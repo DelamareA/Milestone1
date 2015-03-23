@@ -270,7 +270,14 @@ class Mover {
          temp.mult(velocity.dot(n));
          velocity.sub(temp);
          
-         location.add(velocity); // detach the ball
+         PVector n2;
+         do {
+           location.add(velocity); // detach the ball
+           
+            n2 = new PVector(location.x, 0, location.z);
+            n2.sub(new PVector(cylinderList.get(i).x, 0, cylinderList.get(i).y));
+         } while (n2.mag() < cylinderBaseSize + ballSize); // if still in cylinder, detach the ball
+         
        }
        
         
